@@ -125,8 +125,8 @@ error degrades gracefully to "unknown" — it never crashes a scan.
 Requires **Python 3.10+** and **git** on your `PATH`.
 
 ```bash
-git clone <this-repo>
-cd secrets-scanner
+git clone https://github.com/Evangelosplx/Secrets-Scanner.git
+cd Secrets-Scanner
 python -m pip install -r requirements.txt        # runtime (just: rich)
 python -m pip install -r requirements-dev.txt     # + pytest, for running tests
 ```
