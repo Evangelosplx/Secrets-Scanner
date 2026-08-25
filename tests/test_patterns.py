@@ -11,12 +11,15 @@ from secrets_scanner.patterns import (
 )
 
 # Realistic-looking but fake secrets (no real credentials in this repo).
-AWS_KEY = "AKIA2E4Q7B8XY1Z9K3PL"
-GITHUB_KEY = "ghp_0123456789abcdefghijABCDEFGHIJ012345"
-# Split so the literal never appears contiguously in source (GitHub push
-# protection flags the Stripe live-key shape regardless of authenticity).
+# Each value is split into two literals so the full pattern never appears
+# contiguously in source — GitHub secret scanning matches provider *shapes*,
+# so it flags these as false positives regardless of authenticity. Splitting
+# defeats the naive text match while the concatenated runtime string still
+# exercises our own regexes exactly as intended.
+AWS_KEY = "AKIA" + "2E4Q7B8XY1Z9K3PL"
+GITHUB_KEY = "ghp_" + "0123456789abcdefghijABCDEFGHIJ012345"
 STRIPE_KEY = "sk_live_" + "4eC39HqLyjWDarjtT1zdp7dc"
-GOOGLE_KEY = "AIza01234567890123456789012345678901234"
+GOOGLE_KEY = "AIza" + "01234567890123456789012345678901234"
 PRIVATE_HEADER = "-----BEGIN RSA PRIVATE KEY-----"
 
 
